@@ -25,6 +25,7 @@ gem 'puma', '~> 5.0'
 gem 'active_interaction'
 
 group :development do
+  gem 'pry-debugger-jruby'
   gem 'listen', '~> 3.3'
 end
 
