@@ -2,7 +2,6 @@ class ApiController < ApplicationController
   before_action :run_api
 
   def run_api
-    binding.pry
     base_url, service, api_path = request.path.split('/')
     api_path = service if api_path.blank?
 
