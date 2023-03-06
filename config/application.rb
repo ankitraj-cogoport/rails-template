@@ -26,6 +26,18 @@ module MyApplication
 
     config.hosts.clear
 
+    # main apis start
+    $API_REGISTRY = {}
+    apis = Dir.glob("#{Rails.root.join('apis')}/*")
+
+    apis.each do |api|
+      service_name = api.split('/').last.split('.').first.delete_suffix('_apis')
+
+      api_data = JSON.parse(File.read(api)).each { |_, v| v[:service] = service_name }
+      $API_REGISTRY.merge!(api_data.deep_symbolize_keys)
+    end
+    # main apis end
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
